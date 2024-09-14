@@ -10,12 +10,12 @@ on:
       - tgetnerski/**
 
 jobs:
-  checkout:
+  Checkout:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v3
@@ -25,7 +25,7 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: us-east-1
 
-  terraform:
+  Terraform:
     needs: checkout
     runs-on: ubuntu-latest
 
@@ -41,9 +41,9 @@ jobs:
 
     - name: Plan Terraform
       run: terraform plan
-      working-directory: ./fiap-fast-food-terraform-eks
+      working-directory: ./
 
-  create-pull-request:
+  Create-pull-request:
     needs: [terraform, checkout]
     runs-on: ubuntu-latest
 
