@@ -10,12 +10,12 @@ on:
       - tgetnerski/**
 
 jobs:
-  validate:
+  checkout:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v3
@@ -26,12 +26,12 @@ jobs:
         aws-region: us-east-1
 
   terraform:
-    needs: validate
+    needs: checkout
     runs-on: ubuntu-latest
 
     steps:
     - name: Install Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
 
     - name: Terraform Init
       run: terraform init
@@ -43,7 +43,7 @@ jobs:
       run: terraform plan
 
   create-pull-request:
-    needs: [terraform, validate]
+    needs: [terraform, checkout]
     runs-on: ubuntu-latest
 
     steps:
