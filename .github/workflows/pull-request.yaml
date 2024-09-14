@@ -41,6 +41,7 @@ jobs:
 
     - name: Plan Terraform
       run: terraform plan
+      working-directory: ./fiap-fast-food-terraform-eks
 
   create-pull-request:
     needs: [terraform, checkout]

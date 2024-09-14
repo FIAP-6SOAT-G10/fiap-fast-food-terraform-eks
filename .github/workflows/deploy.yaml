@@ -29,6 +29,7 @@ jobs:
 
     - name: Plan Terraform
       run: terraform plan
+      working-directory: ./fiap-fast-food-terraform-eks
 
     - name: Terraform Apply
       run: terraform apply --auto-approve
