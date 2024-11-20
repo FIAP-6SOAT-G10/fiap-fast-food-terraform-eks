@@ -6,3 +6,12 @@ resource "aws_ecr_repository" "fiap_fast_food_app" {
     scan_on_push = true
   }
 }
+
+resource "aws_ecr_repository" "payments" {
+  name                 = "payments"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+}

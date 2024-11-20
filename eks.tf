@@ -47,3 +47,10 @@ resource "aws_eks_node_group" "fiap_fast_food_node_group_public" {
     data.aws_iam_policy.container_registry_read_only_policy
   ]
 }
+
+# resource "aws_eks_pod_identity_association" "identity_association" {
+#   cluster_name    = aws_eks_cluster.fiap_fast_food_eks.name
+#   namespace       = "default"
+#   service_account = "fiapfastfoodsa"
+#   role_arn        = data.aws_iam_role.lab_role.arn
+}
